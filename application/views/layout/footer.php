@@ -1,3 +1,10 @@
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
 <footer class="main-footer">
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -14,6 +21,23 @@
 <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- jQuery -->
 <script src="<?php echo base_url() . 'assets/adminlte/plugins/jquery/jquery.min.js' ?>"></script>
@@ -49,6 +73,16 @@
 <script src="<?php echo base_url() . 'assets/adminlte/dist/js/demo.js' ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url() . 'assets/adminlte/dist/js/pages/dashboard.js' ?>"></script>
+
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo base_url() . 'assets/js/bootstrap.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/dataTables.bootstrap.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js' ?>"></script>
+
 </body>
 
 </html>
