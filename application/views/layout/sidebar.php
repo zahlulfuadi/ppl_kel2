@@ -196,6 +196,26 @@
                         <p>Supplier</p>
                     </a>
                 </li>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url() . 'admin/barang' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Barang</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url() . 'admin/kategori' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Kategori</p>
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url() . 'admin/pengguna' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Pengguna</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

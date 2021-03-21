@@ -45,6 +45,12 @@
     <link href="<?php echo base_url() . 'assets/css/dataTables.bootstrap.min.css' ?>" rel="stylesheet">
     <link href="<?php echo base_url() . 'assets/css/jquery.dataTables.min.css' ?>" rel="stylesheet">
 
+    <!-- laman grafik -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/css/bootstrap-datetimepicker.min.css' ?>">
+
+    <!-- laman profil -->
+    <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/profil.css' ?>">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

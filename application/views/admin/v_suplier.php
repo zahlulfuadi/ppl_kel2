@@ -180,13 +180,6 @@ foreach ($data->result_array() as $a) {
 ?>
 
 <!--END MODAL-->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#mydata').DataTable();
-    });
-</script>
-
-
 
 <?php
 $this->load->view('layout/footer');

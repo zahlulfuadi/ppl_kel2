@@ -83,6 +83,28 @@
 <script src="<?php echo base_url() . 'assets/js/dataTables.bootstrap.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js' ?>"></script>
 
+
+<!-- laman barang -->
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo base_url() . 'assets/dist/js/bootstrap-select.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.price_format.min.js' ?>"></script>
+
+<!-- laman laporan -->
+<script src="<?php echo base_url() . 'assets/js/moment.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/bootstrap-datetimepicker.min.js' ?>"></script>
+
+<!-- laman pembelian  -->
+<script src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.price_format.min.js' ?>"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#mydata').DataTable();
+    });
+</script>
+
+
 </body>
 
 </html>
