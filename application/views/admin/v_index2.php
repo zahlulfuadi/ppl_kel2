@@ -580,7 +580,9 @@ $this->load->view('layout/header');
             <!-- right col -->
         </div>
         <!-- /.row (main row) -->
-
+        <?php
+        $this->load->view('layout/script');
+        ?>
         <?php
         $this->load->view('layout/footer');
         ?>

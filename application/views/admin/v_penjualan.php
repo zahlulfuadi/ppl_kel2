@@ -2,22 +2,26 @@
 $this->load->view('layout/header');
 ?>
 
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <center><?php echo $this->session->flashdata('msg'); ?></center>
-        <h1 class="page-header">Transaksi
-            <small>Penjualan (Eceran)</small>
-            <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Produk!</small></a>
-        </h1>
-    </div>
-</div>
-<!-- /.row -->
+<?php echo $this->session->flashdata('msg'); ?>
+
 <!-- Projects Row -->
 <div class="row">
     <div class="col-lg-12">
         <form action="<?php echo base_url() . 'admin/penjualan/add_to_cart' ?>" method="post">
             <table>
+                <tr>
+                    <th>Tanggal</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='input-group date' id='datepicker' style="width:200px;">
+                            <input type='text' name="tgl" class="form-control" value="<?php echo $this->session->userdata('tglfak'); ?>" placeholder="Tanggal..." />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <th>Kode Barang</th>
                 </tr>
@@ -28,6 +32,9 @@ $this->load->view('layout/header');
                 </div>
             </table>
         </form>
+        <p class="text-right">
+            <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Produk!</small></a>
+        </p>
         <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
             <thead>
                 <tr>
@@ -65,11 +72,11 @@ $this->load->view('layout/header');
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
-                    <th style="width:140px;">Total Belanja(Rp)</th>
+                    <th style="width:140px;">Total Pemasukan(Rp)</th>
                     <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($this->cart->total()); ?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
                     <input type="hidden" id="total" name="total" value="<?php echo $this->cart->total(); ?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th>Tunai(Rp)</th>
                     <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
@@ -78,7 +85,7 @@ $this->load->view('layout/header');
                     <td></td>
                     <th>Kembalian(Rp)</th>
                     <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
-                </tr>
+                </tr> -->
 
             </table>
         </form>
@@ -163,6 +170,11 @@ $this->load->view('layout/header');
 
 
     <!--END MODAL-->
+
+    <?php
+    $this->load->view('layout/script');
+    ?>
+
     <script type="text/javascript">
         $(function() {
             $('#jml_uang').on("input", function() {

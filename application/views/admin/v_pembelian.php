@@ -2,16 +2,8 @@
 $this->load->view('layout/header');
 ?>
 
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <center><?php echo $this->session->flashdata('msg'); ?></center>
-        <h1 class="page-header">Pembelian
-            <small>Barang</small>
+<p class="text-center"><?php echo $this->session->flashdata('msg'); ?></p>
 
-        </h1>
-    </div>
-</div>
 <!-- /.row -->
 <!-- Projects Row -->
 <div class="row">
@@ -19,11 +11,9 @@ $this->load->view('layout/header');
         <form action="<?php echo base_url() . 'admin/pembelian/add_to_cart' ?>" method="post">
             <table>
                 <tr>
-                    <th style="width:100px;padding-bottom:5px;">No Faktur</th>
-                    <th style="width:300px;padding-bottom:5px;"><input type="text" name="nofak" value="<?php echo $this->session->userdata('nofak'); ?>" class="form-control input-sm" style="width:200px;" required></th>
-                    <th style="width:90px;padding-bottom:5px;">Suplier</th>
-                    <td style="width:350px;">
-                        <select name="suplier" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Suplier" data-width="100%" required>
+                    <th style="width:100px;padding-bottom:5px;">Supplier</th>
+                    <td style="width:300px;padding-bottom:5px;">
+                        <select name="suplier" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Suplier" data-width="100%">
                             <?php foreach ($sup->result_array() as $i) {
                                 $id_sup = $i['suplier_id'];
                                 $nm_sup = $i['suplier_nama'];
@@ -34,7 +24,8 @@ $this->load->view('layout/header');
                                     echo "<option value='$id_sup' selected>$nm_sup - $al_sup - $notelp_sup</option>";
                                 else
                                     echo "<option value='$id_sup'>$nm_sup - $al_sup - $notelp_sup</option>";
-                            } ?>
+                            }
+                            ?>
                         </select>
                     </td>
                 </tr>
@@ -103,6 +94,12 @@ $this->load->view('layout/header');
     </div>
 </div>
 <!-- /.row -->
+<?php
+$this->load->view('layout/script');
+?>
+
+<script src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.price_format.min.js' ?>"></script>
 
 <script type="text/javascript">
     $(function() {
@@ -163,6 +160,7 @@ $this->load->view('layout/header');
         });
     });
 </script>
+
 
 <?php
 $this->load->view('layout/footer');

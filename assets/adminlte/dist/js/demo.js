@@ -14,6 +14,7 @@
   var $container = $('<div />', {
     class: 'p-3 control-sidebar-content'
   })
+  var $darkmode = $('#dark-mode')
 
   $sidebar.append($container)
 
@@ -457,4 +458,7 @@
     $('.product-image-thumb.active').removeClass('active')
     $(this).addClass('active')
   })
+
+  $darkmode.append($dark_mode_container)
+
 })(jQuery)

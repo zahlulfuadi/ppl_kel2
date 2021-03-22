@@ -153,16 +153,9 @@ $this->load->view('layout/header');
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Harga (Eceran)</label>
+                        <label class="control-label col-xs-3">Harga</label>
                         <div class="col-xs-9">
                             <input name="harjul" class="harjul form-control" type="text" placeholder="Harga Jual Eceran..." style="width:335px;">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Harga (Grosir)</label>
-                        <div class="col-xs-9">
-                            <input name="harjul_grosir" class="harjul form-control" type="text" placeholder="Harga Jual Grosir..." style="width:335px;">
                         </div>
                     </div>
 
@@ -172,14 +165,6 @@ $this->load->view('layout/header');
                             <input name="stok" class="form-control" type="number" placeholder="Stok..." style="width:335px;">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Minimal Stok</label>
-                        <div class="col-xs-9">
-                            <input name="min_stok" class="form-control" type="number" placeholder="Minimal Stok..." style="width:335px;">
-                        </div>
-                    </div>
-
 
                 </div>
 
@@ -967,16 +952,9 @@ foreach ($data->result_array() as $a) {
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-xs-3">Harga (Eceran)</label>
+                            <label class="control-label col-xs-3">Harga</label>
                             <div class="col-xs-9">
                                 <input name="harjul" class="harjul form-control" type="text" value="<?php echo $harjul; ?>" placeholder="Harga Jual..." style="width:335px;" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-3">Harga (Grosir)</label>
-                            <div class="col-xs-9">
-                                <input name="harjul_grosir" class="harjul form-control" type="text" value="<?php echo $harjul_grosir; ?>" placeholder="Harga Jual Grosir..." style="width:335px;" required>
                             </div>
                         </div>
 
@@ -986,14 +964,6 @@ foreach ($data->result_array() as $a) {
                                 <input name="stok" class="form-control" type="number" value="<?php echo $stok; ?>" placeholder="Stok..." style="width:335px;" required>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-3">Minimal Stok</label>
-                            <div class="col-xs-9">
-                                <input name="min_stok" class="form-control" type="number" value="<?php echo $min_stok; ?>" placeholder="Minimal Stok..." style="width:335px;" required>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
@@ -1044,6 +1014,11 @@ foreach ($data->result_array() as $a) {
 ?>
 
 <!--END MODAL-->
+<?php
+$this->load->view('layout/script');
+?>
+
+<script src="<?php echo base_url() . 'assets/js/jquery.price_format.min.js' ?>"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

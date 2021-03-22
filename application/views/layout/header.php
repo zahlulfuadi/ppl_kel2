@@ -49,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/css/bootstrap-datetimepicker.min.css' ?>">
 
     <!-- laman profil -->
-    <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/profil.css' ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/profil.css' ?>"> -->
 
 </head>
 
@@ -64,18 +64,18 @@
         ?>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="padding-bottom: 20px;">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0"><?php echo $judul; ?></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v1</li>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'welcome' ?>">Home</a></li>
+                                <li class=" breadcrumb-item active"><?php echo $judul; ?></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
