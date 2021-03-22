@@ -66,12 +66,6 @@
 <script src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js' ?>"></script>
 
 
-
-<!-- laman laporan -->
-<!-- <script src="<?php echo base_url() . 'assets/js/moment.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/bootstrap-datetimepicker.min.js' ?>"></script> -->
-
-
 <script type="text/javascript">
     $(document).ready(function() {
         $('#mydata').DataTable();

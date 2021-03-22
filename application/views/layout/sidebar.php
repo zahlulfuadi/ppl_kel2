@@ -104,14 +104,14 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url() . 'admin/grafik' ?>" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Grafik
-                            <i class="right fas fa-angle-left"></i>
+                            <!-- <i class="right fas fa-angle-left"></i> -->
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="pages/charts/chartjs.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -130,17 +130,17 @@
                                 <p>Grafik Penjualan per Tahun</p>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url() . 'admin/laporan' ?>" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
                             Laporan
-                            <i class="fas fa-angle-left right"></i>
+                            <!-- <i class="fas fa-angle-left right"></i> -->
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="pages/UI/general.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -183,7 +183,7 @@
                                 <p>Laporan Laba Rugi</p>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li class="nav-header">ADMIN</li>
                 <li class="nav-item">

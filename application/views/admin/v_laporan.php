@@ -231,6 +231,13 @@ $this->load->view('layout/header');
 
 
 <!--END MODAL-->
+<?php
+$this->load->view('layout/script');
+?>
+
+<script src="<?php echo base_url() . 'assets/js/moment.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/bootstrap-datetimepicker.min.js' ?>"></script>
+
 <script type="text/javascript">
     $(function() {
         $('#datetimepicker').datetimepicker({

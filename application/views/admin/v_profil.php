@@ -170,5 +170,8 @@ $this->load->view('layout/header');
 </div>
 
 <?php
+$this->load->view('layout/script');
+?>
+<?php
 $this->load->view('layout/footer');
 ?>

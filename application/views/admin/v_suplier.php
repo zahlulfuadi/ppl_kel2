@@ -3,12 +3,9 @@ $this->load->view('layout/header');
 ?>
 
 <!-- Page Heading -->
-<div class="row">
+<div class="row" style="margin-bottom: 20px;">
     <div class="col-lg-12">
-        <h1 class="page-header">Data
-            <small>Suplier</small>
-            <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Tambah Suplier</a></div>
-        </h1>
+        <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Tambah Suplier</a></div>
     </div>
 </div>
 <!-- /.row -->
@@ -180,6 +177,9 @@ foreach ($data->result_array() as $a) {
 ?>
 
 <!--END MODAL-->
+<?php
+$this->load->view('layout/script');
+?>
 
 <?php
 $this->load->view('layout/footer');

@@ -232,5 +232,8 @@ foreach ($data->result_array() as $a) {
 <!--END MODAL-->
 
 <?php
+$this->load->view('layout/script');
+?>
+<?php
 $this->load->view('layout/footer');
 ?>

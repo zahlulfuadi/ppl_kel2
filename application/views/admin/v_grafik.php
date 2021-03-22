@@ -27,7 +27,7 @@ $this->load->view('layout/header');
                     <td style="text-align:center;vertical-align:middle">1</td>
                     <td style="vertical-align:middle;">Grafik Stok Barang</td>
                     <td style="text-align:center;">
-                        <a class="btn btn-sm btn-default" href="<?php echo base_url() . 'admin/grafik/graf_stok_barang' ?>" target="_blank"><span class="fa fa-eye"></span> Lihat</a>
+                        <a class="btn btn-sm btn-default" href="<?php echo base_url() . 'admin/grafik/graf_stok_barang' ?>"><span class="fa fa-eye"></span> Lihat</a>
                     </td>
                 </tr>
 
@@ -62,7 +62,7 @@ $this->load->view('layout/header');
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Pilih Bulan</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/grafik/graf_penjualan_perbulan' ?>" target="_blank">
+            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/grafik/graf_penjualan_perbulan' ?>">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -98,7 +98,7 @@ $this->load->view('layout/header');
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Pilih Tahun</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/grafik/graf_penjualan_pertahun' ?>" target="_blank">
+            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/grafik/graf_penjualan_pertahun' ?>">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -130,6 +130,10 @@ $this->load->view('layout/header');
 
 <!--END MODAL-->
 
+<?php
+$this->load->view('layout/script');
+?>
+
 <script src="<?php echo base_url() . 'assets/js/moment.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/bootstrap-datetimepicker.min.js' ?>"></script>
 <script type="text/javascript">
@@ -150,7 +154,6 @@ $this->load->view('layout/header');
         });
     });
 </script>
-
 
 <?php
 $this->load->view('layout/footer');

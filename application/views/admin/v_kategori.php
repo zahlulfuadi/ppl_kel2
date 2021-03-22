@@ -63,6 +63,13 @@ $this->load->view('layout/header');
                             <input name="kategori" class="form-control" type="text" placeholder="Input Nama Kategori..." style="width:280px;" required>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Deskripsi</label>
+                        <div class="col-xs-9">
+                            <textarea class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
+                        </div>
+                    </div>
+
 
 
                 </div>
@@ -99,6 +106,14 @@ foreach ($data->result_array() as $a) {
                                 <input name="kategori" class="form-control" type="text" value="<?php echo $nm; ?>" style="width:280px;" required>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Deskripsi</label>
+                            <div class="col-xs-9">
+                                <textarea class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
+                            </div>
+                        </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -144,7 +159,9 @@ foreach ($data->result_array() as $a) {
 ?>
 
 <!--END MODAL-->
-
+<?php
+$this->load->view('layout/script');
+?>
 <?php
 $this->load->view('layout/footer');
 ?>
