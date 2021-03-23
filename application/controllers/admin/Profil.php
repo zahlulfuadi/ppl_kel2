@@ -14,9 +14,9 @@ class Profil extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('akses') == '1') {
-			$data['data'] = $this->m_barang->tampil_barang();
-			$data['kat'] = $this->m_kategori->tampil_kategori();
-			$data['kat2'] = $this->m_kategori->tampil_kategori();
+			// $data['data'] = $this->m_barang->tampil_barang();
+			// $data['kat'] = $this->m_kategori->tampil_kategori();
+			// $data['kat2'] = $this->m_kategori->tampil_kategori();
 			$data['judul'] = "Profil";
 			$this->load->view('admin/v_profil', $data);
 		} else {

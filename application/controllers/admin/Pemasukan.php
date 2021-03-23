@@ -1,5 +1,5 @@
 <?php
-class Penjualan extends CI_Controller
+class Pemasukan extends CI_Controller
 {
 	function __construct()
 	{
@@ -11,14 +11,14 @@ class Penjualan extends CI_Controller
 		$this->load->model('m_kategori');
 		$this->load->model('m_barang');
 		$this->load->model('m_supplier');
-		$this->load->model('m_penjualan');
+		$this->load->model('m_pemasukan');
 	}
 	function index()
 	{
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['data'] = $this->m_barang->tampil_barang();
 			$data['judul'] = "Pemasukan";
-			$this->load->view('admin/v_penjualan', $data);
+			$this->load->view('admin/v_pemasukan', $data);
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
@@ -40,10 +40,11 @@ class Penjualan extends CI_Controller
 			$produk = $this->m_barang->get_barang($kobar);
 			$i = $produk->row_array();
 			$data = array(
-				'id'       => $i['barang_id'],
-				'name'     => $i['barang_nama'],
-				'satuan'   => $i['barang_satuan'],
-				'harpok'   => $i['barang_harpok'],
+				'jenis'    => 'pemasukan',
+				'id'       => $i['id_barang'],
+				'name'     => $i['nama_barang'],
+				'satuan'   => $i['satuan_barang'],
+				'harpok'   => $i['harga_pokok'],
 				'price'    => str_replace(",", "", $this->input->post('harjul')) - $this->input->post('diskon'),
 				'disc'     => $this->input->post('diskon'),
 				'qty'      => $this->input->post('qty'),
@@ -70,7 +71,7 @@ class Penjualan extends CI_Controller
 				$this->cart->insert($data);
 			}
 
-			redirect('admin/penjualan');
+			redirect('admin/pemasukan');
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
@@ -83,12 +84,12 @@ class Penjualan extends CI_Controller
 				'rowid'      => $row_id,
 				'qty'     => 0
 			));
-			redirect('admin/penjualan');
+			redirect('admin/pemasukan');
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
 	}
-	function simpan_penjualan()
+	function simpan_pemasukan()
 	{
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$total = $this->input->post('total');
@@ -105,11 +106,11 @@ class Penjualan extends CI_Controller
 						</button>
 					</div>'
 					);
-					redirect('admin/penjualan');
+					redirect('admin/pemasukan');
 				} else {
-					$nofak = $this->m_penjualan->get_nofak();
+					$nofak = $this->m_pemasukan->get_nofak();
 					$this->session->set_userdata('nofak', $nofak);
-					$order_proses = $this->m_penjualan->simpan_penjualan($nofak, $total, $jml_uang, $kembalian);
+					$order_proses = $this->m_pemasukan->simpan_pemasukan($nofak, $total, $jml_uang, $kembalian);
 					if ($order_proses) {
 						$this->cart->destroy();
 
@@ -117,19 +118,19 @@ class Penjualan extends CI_Controller
 						$this->session->unset_userdata('supplier');
 						$this->load->view('admin/alert/alert_sukses');
 					} else {
-						redirect('admin/penjualan');
+						redirect('admin/pemasukan');
 					}
 				}
 			} else {
 				echo $this->session->set_flashdata('msg', '
 				<div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
-						Penjualan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
+						pemasukan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 				');
-				redirect('admin/penjualan');
+				redirect('admin/pemasukan');
 			}
 		} else {
 			echo "Halaman tidak ditemukan";
@@ -138,7 +139,7 @@ class Penjualan extends CI_Controller
 
 	function cetak_faktur()
 	{
-		$x['data'] = $this->m_penjualan->cetak_faktur();
+		$x['data'] = $this->m_pemasukan->cetak_faktur();
 		$this->load->view('admin/laporan/v_faktur', $x);
 		//$this->session->unset_userdata('nofak');
 	}

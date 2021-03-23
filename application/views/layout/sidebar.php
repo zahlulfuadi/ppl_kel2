@@ -54,13 +54,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'admin/pembelian' ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'admin/pengeluaran' ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pengeluaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'admin/penjualan' ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'admin/pemasukan' ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pemasukan</p>
                             </a>
@@ -190,6 +190,12 @@
                     <a href="<?php echo base_url() . 'admin/pengguna' ?>" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p>Pengguna</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url() . 'administrator/logout' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Logout</p>
                     </a>
                 </li>
             </ul>

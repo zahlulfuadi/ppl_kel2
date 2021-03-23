@@ -7,7 +7,7 @@ $this->load->view('layout/header');
 <!-- Projects Row -->
 <div class="row">
     <div class="col-lg-12">
-        <form action="<?php echo base_url() . 'admin/penjualan/add_to_cart' ?>" method="post">
+        <form action="<?php echo base_url() . 'admin/pemasukan/add_to_cart' ?>" method="post">
             <table>
                 <tr>
                     <th>Tanggal</th>
@@ -53,22 +53,24 @@ $this->load->view('layout/header');
                 <?php foreach ($this->cart->contents() as $items) : ?>
                     <?php echo form_hidden($i . '[rowid]', $items['rowid']); ?>
                     <tr>
-                        <td><?= $items['id']; ?></td>
-                        <td><?= $items['name']; ?></td>
-                        <td style="text-align:center;"><?= $items['satuan']; ?></td>
-                        <td style="text-align:right;"><?php echo number_format($items['amount']); ?></td>
-                        <td style="text-align:right;"><?php echo number_format($items['disc']); ?></td>
-                        <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
-                        <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
+                        <?php if ($items['jenis'] == 'pemasukan') { ?>
+                            <td><?= $items['id']; ?></td>
+                            <td><?= $items['name']; ?></td>
+                            <td style="text-align:center;"><?= $items['satuan']; ?></td>
+                            <td style="text-align:right;"><?php echo number_format($items['amount']); ?></td>
+                            <td style="text-align:right;"><?php echo number_format($items['disc']); ?></td>
+                            <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
+                            <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
 
-                        <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/penjualan/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                            <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pemasukan/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                        <?php } ?>
                     </tr>
 
                     <?php $i++; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <form action="<?php echo base_url() . 'admin/penjualan/simpan_penjualan' ?>" method="post">
+        <form action="<?php echo base_url() . 'admin/pemasukan/simpan_penjualan' ?>" method="post">
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
@@ -138,7 +140,7 @@ $this->load->view('layout/header');
                                     <td style="text-align:right;"><?php echo 'Rp ' . number_format($harjul); ?></td>
                                     <td style="text-align:center;"><?php echo $stok; ?></td>
                                     <td style="text-align:center;">
-                                        <form action="<?php echo base_url() . 'admin/penjualan/add_to_cart' ?>" method="post">
+                                        <form action="<?php echo base_url() . 'admin/pemasukan/add_to_cart' ?>" method="post">
                                             <input type="hidden" name="kode_brg" value="<?php echo $id ?>">
                                             <input type="hidden" name="nabar" value="<?php echo $nm; ?>">
                                             <input type="hidden" name="satuan" value="<?php echo $satuan; ?>">
@@ -225,7 +227,7 @@ $this->load->view('layout/header');
                 };
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url() . 'admin/penjualan/get_barang'; ?>",
+                    url: "<?php echo base_url() . 'admin/pemasukan/get_barang'; ?>",
                     data: kobar,
                     success: function(msg) {
                         $('#detail_barang').html(msg);

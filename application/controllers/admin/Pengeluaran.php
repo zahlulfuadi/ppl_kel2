@@ -21,6 +21,7 @@ class Pengeluaran extends CI_Controller
 			$this->load->view('admin/v_pengeluaran', $x);
 		} else {
 			echo "Halaman tidak ditemukan";
+			echo $this->session->userdata('akses');
 		}
 	}
 	function get_barang()
@@ -46,11 +47,12 @@ class Pengeluaran extends CI_Controller
 			$produk = $this->m_barang->get_barang($kobar);
 			$i = $produk->row_array();
 			$data = array(
+				'jenis'    => 'pengeluaran',
 				'id'       => $i['id_barang'],
 				'name'     => $i['nama_barang'],
 				'satuan'   => $i['nama_satuan'],
-				'price'    => $this->input->post('harga_pokok'),
-				'harga'    => $this->input->post('harga_jual'),
+				'price'    => $this->input->post('harpok'),
+				'harga'    => $this->input->post('harjul'),
 				'qty'      => $this->input->post('jumlah')
 			);
 
@@ -58,6 +60,7 @@ class Pengeluaran extends CI_Controller
 			redirect('admin/pengeluaran');
 		} else {
 			echo "Halaman tidak ditemukan";
+			// $this->session->userdata('akses');
 		}
 	}
 	function remove()
