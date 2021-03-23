@@ -10,7 +10,7 @@ class Penjualan extends CI_Controller
 		};
 		$this->load->model('m_kategori');
 		$this->load->model('m_barang');
-		$this->load->model('m_suplier');
+		$this->load->model('m_supplier');
 		$this->load->model('m_penjualan');
 	}
 	function index()
@@ -114,7 +114,7 @@ class Penjualan extends CI_Controller
 						$this->cart->destroy();
 
 						$this->session->unset_userdata('tglfak');
-						$this->session->unset_userdata('suplier');
+						$this->session->unset_userdata('supplier');
 						$this->load->view('admin/alert/alert_sukses');
 					} else {
 						redirect('admin/penjualan');

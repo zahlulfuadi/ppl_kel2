@@ -12,6 +12,7 @@ class Welcome extends CI_Controller
 
 	function index()
 	{
-		$this->load->view('admin/v_index2');
+		$data['judul'] = "Dashboard";
+		$this->load->view('admin/v_index2', $data);
 	}
 }

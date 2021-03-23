@@ -1,5 +1,5 @@
 <?php
-class Suplier extends CI_Controller
+class Supplier extends CI_Controller
 {
 	function __construct()
 	{
@@ -8,49 +8,49 @@ class Suplier extends CI_Controller
 			$url = base_url();
 			redirect($url);
 		};
-		$this->load->model('m_suplier');
+		$this->load->model('m_supplier');
 	}
 	function index()
 	{
 		if ($this->session->userdata('akses') == '1') {
-			$data['data'] = $this->m_suplier->tampil_suplier();
+			$data['data'] = $this->m_supplier->tampil_supplier();
 			$data['judul'] = "Data Supplier";
-			$this->load->view('admin/v_suplier', $data);
+			$this->load->view('admin/v_supplier', $data);
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
 	}
-	function tambah_suplier()
+	function tambah_supplier()
 	{
 		if ($this->session->userdata('akses') == '1') {
 			$nama = $this->input->post('nama');
 			$alamat = $this->input->post('alamat');
 			$notelp = $this->input->post('notelp');
-			$this->m_suplier->simpan_suplier($nama, $alamat, $notelp);
-			redirect('admin/suplier');
+			$this->m_supplier->simpan_supplier($nama, $alamat, $notelp);
+			redirect('admin/supplier');
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
 	}
-	function edit_suplier()
+	function edit_supplier()
 	{
 		if ($this->session->userdata('akses') == '1') {
 			$kode = $this->input->post('kode');
 			$nama = $this->input->post('nama');
 			$alamat = $this->input->post('alamat');
 			$notelp = $this->input->post('notelp');
-			$this->m_suplier->update_suplier($kode, $nama, $alamat, $notelp);
-			redirect('admin/suplier');
+			$this->m_supplier->update_supplier($kode, $nama, $alamat, $notelp);
+			redirect('admin/supplier');
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
 	}
-	function hapus_suplier()
+	function hapus_supplier()
 	{
 		if ($this->session->userdata('akses') == '1') {
 			$kode = $this->input->post('kode');
-			$this->m_suplier->hapus_suplier($kode);
-			redirect('admin/suplier');
+			$this->m_supplier->hapus_supplier($kode);
+			redirect('admin/supplier');
 		} else {
 			echo "Halaman tidak ditemukan";
 		}

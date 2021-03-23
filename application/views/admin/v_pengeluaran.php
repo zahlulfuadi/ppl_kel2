@@ -8,18 +8,19 @@ $this->load->view('layout/header');
 <!-- Projects Row -->
 <div class="row">
     <div class="col-lg-12">
-        <form action="<?php echo base_url() . 'admin/pembelian/add_to_cart' ?>" method="post">
+        <form action="<?php echo base_url() . 'admin/pengeluaran/add_to_cart' ?>" method="post">
             <table>
                 <tr>
                     <th style="width:100px;padding-bottom:5px;">Supplier</th>
                     <td style="width:300px;padding-bottom:5px;">
-                        <select name="suplier" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Suplier" data-width="100%">
+                        <select name="supplier" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Supplier" data-width="100%">
+                            <option value=''>Pilih Supplier</option>
                             <?php foreach ($sup->result_array() as $i) {
-                                $id_sup = $i['suplier_id'];
-                                $nm_sup = $i['suplier_nama'];
-                                $al_sup = $i['suplier_alamat'];
-                                $notelp_sup = $i['suplier_notelp'];
-                                $sess_id = $this->session->userdata('suplier');
+                                $id_sup = $i['id_supplier'];
+                                $nm_sup = $i['nama_supplier'];
+                                $al_sup = $i['alamat'];
+                                $notelp_sup = $i['no_telp'];
+                                $sess_id = $this->session->userdata('supplier');
                                 if ($sess_id == $id_sup)
                                     echo "<option value='$id_sup' selected>$nm_sup - $al_sup - $notelp_sup</option>";
                                 else
@@ -33,7 +34,7 @@ $this->load->view('layout/header');
                     <th>Tanggal</th>
                     <td>
                         <div class='input-group date' id='datepicker' style="width:200px;">
-                            <input type='text' name="tgl" class="form-control" value="<?php echo $this->session->userdata('tglfak'); ?>" placeholder="Tanggal..." required />
+                            <input type='text' name="tgl" class="form-control" value="<?php echo $this->session->userdata('tgl'); ?>" placeholder="Tanggal..." required />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -78,7 +79,7 @@ $this->load->view('layout/header');
                         <td style="text-align:right;"><?php echo number_format($items['harga']); ?></td>
                         <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
                         <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
-                        <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pembelian/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                        <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pengeluaran/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
@@ -90,7 +91,7 @@ $this->load->view('layout/header');
                 </tr>
             </tfoot>
         </table>
-        <a href="<?php echo base_url() . 'admin/pembelian/simpan_pembelian' ?>" class="btn btn-info btn-lg"><span class="fa fa-save"></span> Simpan</a>
+        <a href="<?php echo base_url() . 'admin/pengeluaran/simpan_pengeluaran' ?>" class="btn btn-info btn-lg"><span class="fa fa-save"></span> Simpan</a>
     </div>
 </div>
 <!-- /.row -->
@@ -121,13 +122,13 @@ $this->load->view('layout/script');
 </script>
 <script type="text/javascript">
     $(function() {
-        $('.harpok').priceFormat({
+        $('.harga_pokok').priceFormat({
             prefix: '',
             //centsSeparator: '',
             centsLimit: 0,
             thousandsSeparator: ','
         });
-        $('.harjul').priceFormat({
+        $('.harga_jual').priceFormat({
             prefix: '',
             //centsSeparator: '',
             centsLimit: 0,
@@ -145,7 +146,7 @@ $this->load->view('layout/script');
             };
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . 'admin/pembelian/get_barang'; ?>",
+                url: "<?php echo base_url() . 'admin/pengeluaran/get_barang'; ?>",
                 data: kobar,
                 success: function(msg) {
                     $('#detail_barang').html(msg);
