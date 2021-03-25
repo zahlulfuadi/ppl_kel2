@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url() . 'admin/bukukas' ?>" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Buku Kas
@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin/buku_kas" class="nav-link">
+                            <a href="<?php echo base_url() . 'admin/bukukas' ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Buku Kas</p>
                             </a>

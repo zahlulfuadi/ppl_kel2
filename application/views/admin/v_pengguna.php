@@ -33,10 +33,10 @@ $this->load->view('layout/header');
                 $no = 0;
                 foreach ($data->result_array() as $a) :
                     $no++;
-                    $id = $a['user_id'];
-                    $nm = $a['user_nama'];
-                    $username = $a['user_username'];
-                    $password = $a['user_password'];
+                    $id = $a['id_user'];
+                    $nm = $a['nama'];
+                    $username = $a['username'];
+                    $password = $a['password'];
                     $level = $a['user_level'];
                     $status = $a['user_status'];
                 ?>
@@ -121,10 +121,10 @@ $this->load->view('layout/header');
 <!-- ============ MODAL EDIT =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['user_id'];
-    $nm = $a['user_nama'];
-    $username = $a['user_username'];
-    $password = $a['user_password'];
+    $id = $a['id_user'];
+    $nm = $a['nama'];
+    $username = $a['username'];
+    $password = $a['password'];
     $level = $a['user_level'];
     $status = $a['user_status'];
 ?>
@@ -198,10 +198,10 @@ foreach ($data->result_array() as $a) {
 <!-- ============ MODAL HAPUS =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['user_id'];
-    $nm = $a['user_nama'];
-    $username = $a['user_username'];
-    $password = $a['user_password'];
+    $id = $a['id_user'];
+    $nm = $a['nama'];
+    $username = $a['username'];
+    $password = $a['password'];
     $level = $a['user_level'];
     $status = $a['user_status'];
 ?>
