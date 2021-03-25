@@ -5,8 +5,7 @@ $this->load->view('layout/header');
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Data
-            <small>Barang</small>
+        <h1 class="page-header">
             <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Tambah Barang</a></div>
         </h1>
     </div>
@@ -36,16 +35,16 @@ $this->load->view('layout/header');
                 $no = 0;
                 foreach ($data->result_array() as $a) :
                     $no++;
-                    $id = $a['barang_id'];
-                    $nm = $a['barang_nama'];
-                    $satuan = $a['barang_satuan'];
-                    $harpok = $a['barang_harpok'];
-                    $harjul = $a['barang_harjul'];
-                    $harjul_grosir = $a['barang_harjul_grosir'];
-                    $stok = $a['barang_stok'];
-                    $min_stok = $a['barang_min_stok'];
-                    $kat_id = $a['barang_kategori_id'];
-                    $kat_nama = $a['kategori_nama'];
+                    $id = $a['id_barang'];
+                    $nm = $a['nama_barang'];
+                    $satuan = $a['satuan_barang'];
+                    $harpok = $a['harga_pokok'];
+                    $harjul = $a['harga_jual'];
+                    // $harjul_grosir = $a['harga_jual_grosir'];
+                    $stok = $a['stok'];
+                    // $min_stok = $a['barang_min_stok'];
+                    $kat_id = $a['id_kategori'];
+                    $kat_nama = $a['nama_kategori'];
                 ?>
                     <tr>
                         <td style="text-align:center;"><?php echo $no; ?></td>
@@ -54,9 +53,11 @@ $this->load->view('layout/header');
                         <td style="text-align:center;"><?php echo $satuan; ?></td>
                         <td style="text-align:right;"><?php echo 'Rp ' . number_format($harpok); ?></td>
                         <td style="text-align:right;"><?php echo 'Rp ' . number_format($harjul); ?></td>
-                        <td style="text-align:right;"><?php echo 'Rp ' . number_format($harjul_grosir); ?></td>
+                        <td style="text-align:right;">kosong<?php // echo 'Rp ' . number_format($harjul_grosir); 
+                                                            ?></td>
                         <td style="text-align:center;"><?php echo $stok; ?></td>
-                        <td style="text-align:center;"><?php echo $min_stok; ?></td>
+                        <td style="text-align:center;">kosong<?php // echo $min_stok; 
+                                                                ?></td>
                         <td><?php echo $kat_nama; ?></td>
                         <td style="text-align:center;">
                             <a class="btn btn-xs btn-warning" href="#modalEditPelanggan<?php echo $id ?>" data-toggle="modal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
@@ -100,7 +101,7 @@ $this->load->view('layout/header');
                             <select name="kategori" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Kategori" data-width="80%" placeholder="Pilih Kategori" required>
                                 <?php foreach ($kat2->result_array() as $k2) {
                                     $id_kat = $k2['kategori_id'];
-                                    $nm_kat = $k2['kategori_nama'];
+                                    $nm_kat = $k2['nama_kategori'];
                                 ?>
                                     <option value="<?php echo $id_kat; ?>"><?php echo $nm_kat; ?></option>
                                 <?php } ?>
@@ -180,16 +181,16 @@ $this->load->view('layout/header');
 <!-- ============ MODAL EDIT =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['barang_id'];
-    $nm = $a['barang_nama'];
-    $satuan = $a['barang_satuan'];
-    $harpok = $a['barang_harpok'];
-    $harjul = $a['barang_harjul'];
-    $harjul_grosir = $a['barang_harjul_grosir'];
-    $stok = $a['barang_stok'];
-    $min_stok = $a['barang_min_stok'];
-    $kat_id = $a['barang_kategori_id'];
-    $kat_nama = $a['kategori_nama'];
+    $id = $a['id_barang'];
+    $nm = $a['nama_barang'];
+    $satuan = $a['satuan_barang'];
+    $harpok = $a['harga_pokok'];
+    $harjul = $a['harga_jual'];
+    // $harjul_grosir = $a['harga_jual_grosir'];
+    $stok = $a['stok'];
+    // $min_stok = $a['barang_min_stok'];
+    $kat_id = $a['id_kategori'];
+    $kat_nama = $a['nama_kategori'];
 ?>
     <div id="modalEditPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -221,7 +222,7 @@ foreach ($data->result_array() as $a) {
                                 <select name="kategori" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Kategori" data-width="80%" placeholder="Pilih Kategori" required>
                                     <?php foreach ($kat2->result_array() as $k2) {
                                         $id_kat = $k2['kategori_id'];
-                                        $nm_kat = $k2['kategori_nama'];
+                                        $nm_kat = $k2['nama_kategori'];
                                         if ($id_kat == $kat_id)
                                             echo "<option value='$id_kat' selected>$nm_kat</option>";
                                         else
@@ -980,14 +981,14 @@ foreach ($data->result_array() as $a) {
 <!-- ============ MODAL HAPUS =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['barang_id'];
-    $nm = $a['barang_nama'];
-    $harpok = $a['barang_harpok'];
-    $harjul = $a['barang_harjul'];
-    $stok = $a['barang_stok'];
-    $min_stok = $a['barang_min_stok'];
-    $kat_id = $a['barang_kategori_id'];
-    $kat_nama = $a['kategori_nama'];
+    $id = $a['id_barang'];
+    $nm = $a['nama_barang'];
+    $harpok = $a['harga_pokok'];
+    $harjul = $a['harga_jual'];
+    $stok = $a['stok'];
+    // $min_stok = $a['barang_min_stok'];
+    $kat_id = $a['id_kategori'];
+    $kat_nama = $a['nama_kategori'];
 ?>
     <div id="modalHapusPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">

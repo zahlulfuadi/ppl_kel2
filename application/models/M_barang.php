@@ -17,7 +17,7 @@ class M_barang extends CI_Model
 
 	function tampil_barang()
 	{
-		$hsl = $this->db->query("SELECT b.id_barang, b.nama_barang, b.satuan_barang, b.harga_pokok, b.harga_jual, b.stok, b.tanggal_input, b.tanggal_update, k.nama_kategori FROM barang b, kategori k WHERE b.id_kategori=k.id_kategori");
+		$hsl = $this->db->query("SELECT b.id_barang, b.nama_barang, b.satuan_barang, b.harga_pokok, b.harga_jual, b.stok, b.tanggal_input, b.tanggal_update, k.id_kategori, k.nama_kategori FROM barang b, kategori k WHERE b.id_kategori=k.id_kategori");
 		return $hsl;
 	}
 

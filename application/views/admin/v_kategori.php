@@ -21,6 +21,7 @@ $this->load->view('layout/header');
                 <tr>
                     <th style="text-align:center;width:40px;">No</th>
                     <th>Kategori</th>
+                    <th>Deskripsi</th>
                     <th style="width:140px;text-align:center;">Aksi</th>
                 </tr>
             </thead>
@@ -29,12 +30,15 @@ $this->load->view('layout/header');
                 $no = 0;
                 foreach ($data->result_array() as $a) :
                     $no++;
-                    $id = $a['kategori_id'];
-                    $nm = $a['kategori_nama'];
+                    $id = $a['id_kategori'];
+                    $nm = $a['nama_kategori'];
+                    $des = $a['deskripsi'];
+
                 ?>
                     <tr>
                         <td style="text-align:center;"><?php echo $no; ?></td>
                         <td><?php echo $nm; ?></td>
+                        <td><?php echo $des; ?></td>
                         <td style="text-align:center;">
                             <a class="btn btn-xs btn-warning" href="#modalEditPelanggan<?php echo $id ?>" data-toggle="modal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
                             <a class="btn btn-xs btn-danger" href="#modalHapusPelanggan<?php echo $id ?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Hapus</a>
@@ -86,8 +90,9 @@ $this->load->view('layout/header');
 <!-- ============ MODAL EDIT =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['kategori_id'];
-    $nm = $a['kategori_nama'];
+    $id = $a['id_kategori'];
+    $nm = $a['nama_kategori'];
+    $des = $a['deskripsi'];
 ?>
     <div id="modalEditPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -131,8 +136,9 @@ foreach ($data->result_array() as $a) {
 <!-- ============ MODAL HAPUS =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['kategori_id'];
-    $nm = $a['kategori_nama'];
+    $id = $a['id_kategori'];
+    $nm = $a['nama_kategori'];
+    $des = $a['deskripsi'];
 ?>
     <div id="modalHapusPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">

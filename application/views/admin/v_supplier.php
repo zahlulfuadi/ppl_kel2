@@ -5,7 +5,7 @@ $this->load->view('layout/header');
 <!-- Page Heading -->
 <div class="row" style="margin-bottom: 20px;">
     <div class="col-lg-12">
-        <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Tambah Suplier</a></div>
+        <div class="pull-right"><a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Tambah Supplier</a></div>
     </div>
 </div>
 <!-- /.row -->
@@ -16,7 +16,7 @@ $this->load->view('layout/header');
             <thead>
                 <tr>
                     <th style="text-align:center;width:40px;">No</th>
-                    <th>Nama Suplier</th>
+                    <th>Nama Supplier</th>
                     <th>Alamat</th>
                     <th>No Telp/HP</th>
                     <th style="width:140px;text-align:center;">Aksi</th>
@@ -27,10 +27,10 @@ $this->load->view('layout/header');
                 $no = 0;
                 foreach ($data->result_array() as $a) :
                     $no++;
-                    $id = $a['suplier_id'];
-                    $nm = $a['suplier_nama'];
-                    $alamat = $a['suplier_alamat'];
-                    $notelp = $a['suplier_notelp'];
+                    $id = $a['id_supplier'];
+                    $nm = $a['nama_supplier'];
+                    $alamat = $a['alamat'];
+                    $notelp = $a['no_telp'];
                 ?>
                     <tr>
                         <td style="text-align:center;"><?php echo $no; ?></td>
@@ -54,15 +54,15 @@ $this->load->view('layout/header');
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Suplier</h3>
+                <h3 class="modal-title" id="myModalLabel">Tambah Supplier</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/suplier/tambah_suplier' ?>">
+            <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/supplier/tambah_supplier' ?>">
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Nama Suplier</label>
+                        <label class="control-label col-xs-3">Nama Supplier</label>
                         <div class="col-xs-9">
-                            <input name="nama" class="form-control" type="text" placeholder="Nama Suplier..." style="width:280px;" required>
+                            <input name="nama" class="form-control" type="text" placeholder="Nama Supplier..." style="width:280px;" required>
                         </div>
                     </div>
 
@@ -94,26 +94,26 @@ $this->load->view('layout/header');
 <!-- ============ MODAL EDIT =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['suplier_id'];
-    $nm = $a['suplier_nama'];
-    $alamat = $a['suplier_alamat'];
-    $notelp = $a['suplier_notelp'];
+    $id = $a['id_supplier'];
+    $nm = $a['nama_supplier'];
+    $alamat = $a['alamat'];
+    $notelp = $a['no_telp'];
 ?>
     <div id="modalEditPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 class="modal-title" id="myModalLabel">Edit Suplier</h3>
+                    <h3 class="modal-title" id="myModalLabel">Edit Supplier</h3>
                 </div>
-                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/suplier/edit_suplier' ?>">
+                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/supplier/edit_supplier' ?>">
                     <div class="modal-body">
                         <input name="kode" type="hidden" value="<?php echo $id; ?>">
 
                         <div class="form-group">
-                            <label class="control-label col-xs-3">Nama Suplier</label>
+                            <label class="control-label col-xs-3">Nama Supplier</label>
                             <div class="col-xs-9">
-                                <input name="nama" class="form-control" type="text" placeholder="Nama Suplier..." value="<?php echo $nm; ?>" style="width:280px;" required>
+                                <input name="nama" class="form-control" type="text" placeholder="Nama Supplier..." value="<?php echo $nm; ?>" style="width:280px;" required>
                             </div>
                         </div>
 
@@ -147,19 +147,19 @@ foreach ($data->result_array() as $a) {
 <!-- ============ MODAL HAPUS =============== -->
 <?php
 foreach ($data->result_array() as $a) {
-    $id = $a['suplier_id'];
-    $nm = $a['suplier_nama'];
-    $alamat = $a['suplier_alamat'];
-    $notelp = $a['suplier_notelp'];
+    $id = $a['id_supplier'];
+    $nm = $a['nama_supplier'];
+    $alamat = $a['alamat'];
+    $notelp = $a['no_telp'];
 ?>
     <div id="modalHapusPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 class="modal-title" id="myModalLabel">Hapus Suplier</h3>
+                    <h3 class="modal-title" id="myModalLabel">Hapus Supplier</h3>
                 </div>
-                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/suplier/hapus_suplier' ?>">
+                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/supplier/hapus_supplier' ?>">
                     <div class="modal-body">
                         <p>Yakin mau menghapus data..?</p>
                         <input name="kode" type="hidden" value="<?php echo $id; ?>">

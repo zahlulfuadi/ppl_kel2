@@ -10,9 +10,9 @@ class Laporan extends CI_Controller
 		};
 		$this->load->model('m_kategori');
 		$this->load->model('m_barang');
-		$this->load->model('m_suplier');
-		$this->load->model('m_pembelian');
-		$this->load->model('m_penjualan');
+		$this->load->model('m_supplier');
+		$this->load->model('m_pengeluaran');
+		$this->load->model('m_pemasukan');
 		$this->load->model('m_laporan');
 	}
 	function index()

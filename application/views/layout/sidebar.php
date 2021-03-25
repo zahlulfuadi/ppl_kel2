@@ -96,7 +96,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'admin/suplier' ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'admin/supplier' ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Supplier</p>
                             </a>
