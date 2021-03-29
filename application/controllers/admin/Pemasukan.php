@@ -12,12 +12,16 @@ class Pemasukan extends CI_Controller
 		$this->load->model('m_barang');
 		$this->load->model('m_supplier');
 		$this->load->model('m_pemasukan');
+		$this->load->model('m_pengguna');
 	}
 	function index()
 	{
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('masuk') == true) {
+			$id_user = $this->session->userdata('idadmin');
+
+			$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
 			$data['data'] = $this->m_barang->tampil_barang();
-			$data['judul'] = "Pemasukan";
+			$data['judul'] = "Input Pemasukan";
 			$this->load->view('admin/v_pemasukan', $data);
 		} else {
 			echo "Halaman tidak ditemukan";
@@ -25,7 +29,7 @@ class Pemasukan extends CI_Controller
 	}
 	function get_barang()
 	{
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('masuk') == true) {
 			$kobar = $this->input->post('kode_brg');
 			$x['brg'] = $this->m_barang->get_barang($kobar);
 			$this->load->view('admin/v_detail_barang_jual', $x);

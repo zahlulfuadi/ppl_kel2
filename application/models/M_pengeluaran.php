@@ -2,24 +2,32 @@
 class M_pengeluaran extends CI_Model
 {
 
-	function simpan_pengeluaran($id_pengeluaran, $tgl, $supplier, $keterangan)
+	function simpan_pengeluaran($id_pengeluaran, $tgl, $id_supplier, $keterangan)
 	{
 		$idadmin = $this->session->userdata('idadmin');
-		$this->db->query("INSERT INTO pengeluaran (id_pengeluaran, tanggal_pengeluaran, id_supplier, id_user, ket_pengeluaran) VALUES ('$id_pengeluaran','$tgl','$supplier','$idadmin','$keterangan')");
+		$this->db->query("INSERT INTO pengeluaran (id_pengeluaran, tanggal_pengeluaran, id_supplier, id_user, ket_pengeluaran) VALUES ('$id_pengeluaran','$tgl',$id_supplier,$idadmin,'$keterangan')");
+		$id_pengeluaran = $this->db->insert_id();
 		foreach ($this->cart->contents() as $item) {
 			$data = array(
-				'd_id_pengeluaran'	=>	$id_pengeluaran,
-				'd_beli_barang_id'	=>	$item['id'],
-				'd_beli_harga'		=>	$item['price'],
-				'd_beli_jumlah'		=>	$item['qty'],
-				'd_beli_total'		=>	$item['subtotal'],
-				'd_keterangan'		=>	$keterangan
+				'id_detail_pengeluaran'	=>	"",
+				'id_barang'			=>	$item['id'],
+				'harga'				=>	$item['price'],
+				'jml_pengeluaran'	=>	$item['qty'],
+				'total_pengeluaran'	=>	$item['price'] * $item['qty'],
+				'id_pengeluaran'	=>	$id_pengeluaran
 			);
 			$this->db->insert('detail_pengeluaran', $data);
 			$this->db->query("update barang set stok=stok+'$item[qty]',harga_pokok='$item[price]',harga_jual='$item[harga]' where id_barang='$item[id]'");
 		}
 		return true;
 	}
+
+	function get_user_id($id_pengeluaran)
+	{
+		$hasil = $this->db->query("SELECT id_user FROM pengeluaran WHERE id_pengeluaran='$id_pengeluaran'");
+		return $hasil;
+	}
+
 	function get_kobel()
 	{
 		$q = $this->db->query("SELECT MAX(RIGHT(beli_kode,6)) AS kd_max FROM pengeluaran WHERE DATE(beli_tanggal)=CURDATE()");

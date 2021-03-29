@@ -14,7 +14,7 @@
                 <img src="<?php echo base_url() . 'assets/adminlte/dist/img/user2-160x160.jpg' ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="<?php echo base_url() . 'admin/profil' ?>" class="d-block">Zahlul Fuadi</a>
+                <a href="<?php echo base_url() . 'admin/profil' ?>" class="d-block"><?= $profil['nama']; ?></a>
             </div>
         </div>
 
@@ -185,13 +185,17 @@
                         </li>
                     </ul> -->
                 </li>
-                <li class="nav-header">ADMIN</li>
-                <li class="nav-item">
-                    <a href="<?php echo base_url() . 'admin/pengguna' ?>" class="nav-link">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>Pengguna</p>
-                    </a>
-                </li>
+                <?php if ($this->session->userdata('akses') == '1') { ?>
+                    <li class="nav-header">ADMIN</li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url() . 'admin/pengguna' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>Pengguna</p>
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-header">PENGGUNA</li>
+                <?php }  ?>
                 <li class="nav-item">
                     <a href="<?php echo base_url() . 'administrator/logout' ?>" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>

@@ -14,7 +14,7 @@ class Profil extends CI_Controller
 	{
 		if ($this->session->userdata('masuk') == true) {
 			$id_user = $this->session->userdata('idadmin');
-			$data['data'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
+			$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
 			$data['judul'] = "Profil";
 			$this->load->view('admin/v_profil', $data);
 		} else {

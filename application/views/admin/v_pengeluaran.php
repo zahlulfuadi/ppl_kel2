@@ -43,15 +43,14 @@ $this->load->view('layout/header');
                 </tr>
             </table>
             <hr />
-            <table>
+            <table style="margin-bottom: 80px;">
                 <tr>
                     <th>Kode Barang</th>
                 </tr>
                 <tr>
                     <th><input type="text" name="kode_brg" id="kode_brg" class="form-control input-sm"></th>
-                </tr>
-                <div id="detail_barang" style="position:absolute;">
-                </div>
+                </tr style="margin-left: -10px;">
+                <div id="detail_barang" style="position:absolute; margin:65px 0px 65px 0px;"></div>
             </table>
         </form>
         <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
@@ -60,8 +59,8 @@ $this->load->view('layout/header');
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
                     <th style="text-align:center;">Satuan</th>
+                    <th style="text-align:center;">Supplier</th>
                     <th style="text-align:center;">Harga Pokok</th>
-                    <th style="text-align:center;">Harga Jual</th>
                     <th style="text-align:center;">Jumlah Beli</th>
                     <th style="text-align:center;">Sub Total</th>
                     <th style="width:100px;text-align:center;">Aksi</th>
@@ -76,8 +75,8 @@ $this->load->view('layout/header');
                             <td><?= $items['id']; ?></td>
                             <td><?= $items['name']; ?></td>
                             <td style="text-align:center;"><?= $items['satuan']; ?></td>
+                            <td style="text-align:right;"><?= $items['id_supplier']; ?></td>
                             <td style="text-align:right;"><?php echo number_format($items['price']); ?></td>
-                            <td style="text-align:right;"><?php echo number_format($items['harga']); ?></td>
                             <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
                             <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
                             <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pengeluaran/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
@@ -89,7 +88,7 @@ $this->load->view('layout/header');
             <tfoot>
                 <tr>
                     <td colspan="6" style="text-align:center;">Total</td>
-                    <td style="text-align:right;">Rp. <?php echo number_format($this->cart->total()); ?></td>
+                    <td style="text-align:right;">Rp. <?php echo number_format($this->cart->total_pengeluaran()); ?></td>
                 </tr>
             </tfoot>
         </table>
