@@ -1,15 +1,7 @@
 <?php
 $this->load->view('layout/header');
 ?>
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Semua
-            <small>Grafik</small>
-        </h1>
-    </div>
-</div>
-<!-- /.row -->
+
 <!-- Projects Row -->
 <div class="row">
     <div class="col-lg-12">

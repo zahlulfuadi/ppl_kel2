@@ -4,7 +4,7 @@ $this->load->view('layout/header');
 <?php
 /* Mengambil query report*/
 foreach ($report as $result) {
-    $bulan[] = $result->kategori_nama; //ambil bulan
+    $bulan[] = $result->nama_kategori; //ambil bulan
     $value[] = (float) $result->tot_stok; //ambil nilai
 }
 /* end mengambil query*/

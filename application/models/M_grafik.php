@@ -3,7 +3,7 @@ class M_grafik extends CI_Model
 {
     function statistik_stok()
     {
-        $query = $this->db->query("SELECT kategori_nama,SUM(barang_stok) AS tot_stok FROM tbl_barang JOIN tbl_kategori ON barang_kategori_id=kategori_id GROUP BY kategori_nama");
+        $query = $this->db->query("SELECT k.nama_kategori, SUM(b.stok) AS tot_stok FROM barang b, kategori k WHERE b.id_kategori=k.id_kategori GROUP BY k.nama_kategori");
 
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $data) {

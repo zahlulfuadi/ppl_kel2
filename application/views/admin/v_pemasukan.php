@@ -120,16 +120,14 @@ $this->load->view('layout/header');
                         $no = 0;
                         foreach ($data->result_array() as $a) :
                             $no++;
-                            $id = $a['barang_id'];
-                            $nm = $a['barang_nama'];
-                            $satuan = $a['barang_satuan'];
-                            $harpok = $a['barang_harpok'];
-                            $harjul = $a['barang_harjul'];
-                            $harjul_grosir = $a['barang_harjul_grosir'];
-                            $stok = $a['barang_stok'];
-                            $min_stok = $a['barang_min_stok'];
-                            $kat_id = $a['barang_kategori_id'];
-                            $kat_nama = $a['kategori_nama'];
+                            $id = $a['id_barang'];
+                            $nm = $a['nama_barang'];
+                            $satuan = $a['satuan_barang'];
+                            $harpok = $a['harga_pokok'];
+                            $harjul = $a['harga_jual'];
+                            $stok = $a['stok'];
+                            $kat_id = $a['id_kategori'];
+                            $kat_nama = $a['nama_kategori'];
                         ?>
                             <tr>
                                 <td style="text-align:center;"><?php echo $no; ?></td>

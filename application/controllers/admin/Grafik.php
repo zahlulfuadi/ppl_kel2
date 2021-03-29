@@ -35,9 +35,12 @@ class Grafik extends CI_Controller
 	}
 	function graf_stok_barang()
 	{
-		$x['report'] = $this->m_grafik->statistik_stok();
-		$x['judul'] = "Grafik Stok Barang";
-		$this->load->view('admin/grafik/v_graf_stok_barang', $x);
+		$id_user = $this->session->userdata('idadmin');
+
+		$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
+		$data['report'] = $this->m_grafik->statistik_stok();
+		$data['judul'] = "Grafik Stok Barang";
+		$this->load->view('admin/grafik/v_graf_stok_barang', $data);
 	}
 
 

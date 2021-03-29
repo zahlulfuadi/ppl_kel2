@@ -23,10 +23,10 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <li class="" id="dark-mode" style="margin: 0 5px;">
+        <li class="" id="dark-mode" style="margin: 10px 5px -10px 5px;"">
 
         </li>
-        <li class="nav-item">
+        <li class=" nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>

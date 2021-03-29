@@ -49,7 +49,7 @@
                         <p>
                             Buku Kas
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
+                            <!-- <span class="badge badge-info right">6</span> -->
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -134,7 +134,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url() . 'admin/laporan' ?>" class="nav-link">
-                        <i class="nav-icon fas fa-tree"></i>
+                        <i class="nav-icon fas fa-table"></i>
                         <p>
                             Laporan
                             <!-- <i class="fas fa-angle-left right"></i> -->

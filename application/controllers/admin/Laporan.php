@@ -14,10 +14,14 @@ class Laporan extends CI_Controller
 		$this->load->model('m_pengeluaran');
 		$this->load->model('m_pemasukan');
 		$this->load->model('m_laporan');
+		$this->load->model('m_pengguna');
 	}
 	function index()
 	{
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('masuk') == true) {
+			$id_user = $this->session->userdata('idadmin');
+
+			$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
 			$data['data'] = $this->m_barang->tampil_barang();
 			$data['kat'] = $this->m_kategori->tampil_kategori();
 			$data['jual_bln'] = $this->m_laporan->get_bulan_jual();
@@ -30,15 +34,21 @@ class Laporan extends CI_Controller
 	}
 	function lap_stok_barang()
 	{
-		$x['data'] = $this->m_laporan->get_stok_barang();
-		$x['judul'] = "Laporan Stok Barang";
-		$this->load->view('admin/laporan/v_lap_stok_barang', $x);
+		$id_user = $this->session->userdata('idadmin');
+
+		$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
+		$data['data'] = $this->m_laporan->get_stok_barang();
+		$data['judul'] = "Laporan Stok Barang";
+		$this->load->view('admin/laporan/v_lap_stok_barang', $data);
 	}
 	function lap_data_barang()
 	{
-		$x['data'] = $this->m_laporan->get_data_barang();
-		$x['judul'] = "Laporan Data Barang";
-		$this->load->view('admin/laporan/v_lap_barang', $x);
+		$id_user = $this->session->userdata('idadmin');
+
+		$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
+		$data['data'] = $this->m_laporan->get_data_barang();
+		$data['judul'] = "Laporan Data Barang";
+		$this->load->view('admin/laporan/v_lap_barang', $data);
 	}
 	function lap_data_penjualan()
 	{
