@@ -13,6 +13,7 @@ class Pengeluaran extends CI_Controller
 		$this->load->model('m_supplier');
 		$this->load->model('m_pengeluaran');
 		$this->load->model('m_pengguna');
+		$this->load->model('m_buku_kas');
 	}
 	function index()
 	{
@@ -83,15 +84,18 @@ class Pengeluaran extends CI_Controller
 	}
 	function simpan_pengeluaran()
 	{
+		$id_user = $this->session->userdata('idadmin');
 		if ($this->session->userdata('masuk') == true) {
 			// $id_pengeluaran = $this->session->userdata('id_pengeluaran');
 			$id_pengeluaran = "";
 			$tgl = $this->session->userdata('tgl');
+			$total = $this->input->post('total');
 			$id_supplier = $this->session->userdata('supplier');
-			$ket = "keterangan"; //ini tes aja dulu
+			$ket = "keterangan pengeluaran"; //ini tes aja dulu
 			if (!empty($tgl)) {
 				// $beli_kode = $this->m_pengeluaran->get_kobel();
-				$order_proses = $this->m_pengeluaran->simpan_pengeluaran($id_pengeluaran, $tgl, $id_supplier, $ket);
+				$saldo = $this->m_buku_kas->get_saldo_by_user($id_user)->result_array()[0];
+				$order_proses = $this->m_pengeluaran->simpan_pengeluaran($id_pengeluaran, $tgl, $total, $id_supplier, $ket, $saldo['saldo']);
 				if ($order_proses) {
 					$this->cart->destroy();
 					$this->session->unset_userdata('id_pengeluaran');

@@ -53,46 +53,50 @@ $this->load->view('layout/header');
                 <div id="detail_barang" style="position:absolute; margin:65px 0px 65px 0px;"></div>
             </table>
         </form>
-        <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
-            <thead>
-                <tr>
-                    <th>Kode Barang</th>
-                    <th>Nama Barang</th>
-                    <th style="text-align:center;">Satuan</th>
-                    <th style="text-align:center;">Supplier</th>
-                    <th style="text-align:center;">Harga Pokok</th>
-                    <th style="text-align:center;">Jumlah Beli</th>
-                    <th style="text-align:center;">Sub Total</th>
-                    <th style="width:100px;text-align:center;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; ?>
-                <?php foreach ($this->cart->contents() as $items) : ?>
-                    <?php echo form_hidden($i . '[rowid]', $items['rowid']); ?>
-                    <?php if ($items['jenis'] == 'pengeluaran') { ?>
-                        <tr>
-                            <td><?= $items['id']; ?></td>
-                            <td><?= $items['name']; ?></td>
-                            <td style="text-align:center;"><?= $items['satuan']; ?></td>
-                            <td style="text-align:right;"><?= $items['id_supplier']; ?></td>
-                            <td style="text-align:right;"><?php echo number_format($items['price']); ?></td>
-                            <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
-                            <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
-                            <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pengeluaran/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
-                        </tr>
-                    <?php } ?>
-                    <?php $i++; ?>
-                <?php endforeach; ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" style="text-align:center;">Total</td>
-                    <td style="text-align:right;">Rp. <?php echo number_format($this->cart->total_pengeluaran()); ?></td>
-                </tr>
-            </tfoot>
-        </table>
-        <a href="<?php echo base_url() . 'admin/pengeluaran/simpan_pengeluaran' ?>" class="btn btn-info btn-lg"><span class="fa fa-save"></span> Simpan</a>
+        <form action="<?php echo base_url() . 'admin/pengeluaran/simpan_pengeluaran' ?>" method="post">
+            <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
+                <thead>
+                    <tr>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th style="text-align:center;">Satuan</th>
+                        <th style="text-align:center;">Supplier</th>
+                        <th style="text-align:center;">Harga Pokok</th>
+                        <th style="text-align:center;">Jumlah Beli</th>
+                        <th style="text-align:center;">Sub Total</th>
+                        <th style="width:100px;text-align:center;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($this->cart->contents() as $items) : ?>
+                        <?php echo form_hidden($i . '[rowid]', $items['rowid']); ?>
+                        <?php if ($items['jenis'] == 'pengeluaran') { ?>
+                            <tr>
+                                <td><?= $items['id']; ?></td>
+                                <td><?= $items['name']; ?></td>
+                                <td style="text-align:center;"><?= $items['satuan']; ?></td>
+                                <td style="text-align:right;"><?= $items['id_supplier']; ?></td>
+                                <td style="text-align:right;"><?php echo number_format($items['price']); ?></td>
+                                <td style="text-align:center;"><?php echo number_format($items['qty']); ?></td>
+                                <td style="text-align:right;"><?php echo number_format($items['subtotal']); ?></td>
+                                <td style="text-align:center;"><a href="<?php echo base_url() . 'admin/pengeluaran/remove/' . $items['rowid']; ?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                            </tr>
+                        <?php } ?>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" style="text-align:center;">Total</td>
+                        <td style="text-align:right;">Rp. <?php echo number_format($this->cart->total_pengeluaran()); ?></td>
+                        <input type="hidden" name="total" value="<?= $this->cart->total_pengeluaran(); ?>">
+                    </tr>
+                </tfoot>
+            </table>
+            <input type="submit" class="btn btn-info btn-lg" value="Simpan">
+            <!-- <span class="fa fa-save"></span> -->
+        </form>
     </div>
 </div>
 <!-- /.row -->

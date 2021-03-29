@@ -2,10 +2,10 @@
 class M_pengeluaran extends CI_Model
 {
 
-	function simpan_pengeluaran($id_pengeluaran, $tgl, $id_supplier, $keterangan)
+	function simpan_pengeluaran($id_pengeluaran, $tgl, $total, $id_supplier, $keterangan, $saldo)
 	{
 		$idadmin = $this->session->userdata('idadmin');
-		$this->db->query("INSERT INTO pengeluaran (id_pengeluaran, tanggal_pengeluaran, id_supplier, id_user, ket_pengeluaran) VALUES ('$id_pengeluaran','$tgl',$id_supplier,$idadmin,'$keterangan')");
+		$this->db->query("INSERT INTO pengeluaran (id_pengeluaran, tanggal_pengeluaran, nominal, id_supplier, id_user, ket_pengeluaran) VALUES ('$id_pengeluaran','$tgl',$total,$id_supplier,$idadmin,'$keterangan')");
 		$id_pengeluaran = $this->db->insert_id();
 		foreach ($this->cart->contents() as $item) {
 			$data = array(
@@ -19,6 +19,8 @@ class M_pengeluaran extends CI_Model
 			$this->db->insert('detail_pengeluaran', $data);
 			$this->db->query("update barang set stok=stok+'$item[qty]',harga_pokok='$item[price]',harga_jual='$item[harga]' where id_barang='$item[id]'");
 		}
+		$saldo -= $total;
+		$this->db->query("INSERT INTO buku_kas (id_buku_kas, id_user, tanggal, id_pemasukan, id_pengeluaran, saldo) VALUES ('','$idadmin','$tgl','','$id_pengeluaran',$saldo)");
 		return true;
 	}
 

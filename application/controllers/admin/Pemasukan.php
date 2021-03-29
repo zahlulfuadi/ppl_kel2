@@ -13,6 +13,7 @@ class Pemasukan extends CI_Controller
 		$this->load->model('m_supplier');
 		$this->load->model('m_pemasukan');
 		$this->load->model('m_pengguna');
+		$this->load->model('m_buku_kas');
 	}
 	function index()
 	{
@@ -41,6 +42,8 @@ class Pemasukan extends CI_Controller
 	{
 		if ($this->session->userdata('masuk') == true) {
 			$id_user = $this->session->userdata('idadmin');
+			$tgl = $this->input->post('tgl');
+			$this->session->set_userdata('tgl', $tgl);
 			$kobar = $this->input->post('kode_brg');
 			$produk = $this->m_barang->get_barang($kobar);
 			$i = $produk->row_array();
@@ -97,8 +100,9 @@ class Pemasukan extends CI_Controller
 	}
 	function simpan_pemasukan()
 	{
+		$id_user = $this->session->userdata('idadmin');
 		if ($this->session->userdata('masuk') == true) {
-			$tgl = $this->input->post('tgl');
+			$tgl = $this->session->userdata('tgl');
 			$total = $this->input->post('total');
 			// $jml_uang = str_replace(",", "", $this->input->post('jml_uang'));
 			// $kembalian = $jml_uang - $total;
@@ -117,10 +121,11 @@ class Pemasukan extends CI_Controller
 				// } else {
 				// $id_pemasukan = $this->m_pemasukan->get_id_pemasukan();
 				$id_pemasukan = "";
-				$ket_pemasukan = "keterangan";
+				$ket_pemasukan = "keterangan pemasukan";
 				// $this->session->set_userdata('id_pemasukan', $id_pemasukan);
 				$this->session->set_userdata('tgl', $tgl);
-				$order_proses = $this->m_pemasukan->simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan);
+				$saldo = $this->m_buku_kas->get_saldo_by_user($id_user)->result_array()[0];
+				$order_proses = $this->m_pemasukan->simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan, $saldo['saldo']);
 				if ($order_proses) {
 					$this->cart->destroy();
 

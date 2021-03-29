@@ -17,11 +17,19 @@ class M_buku_kas extends CI_Model
 
 	function tampil_buku_kas()
 	{
+		$idadmin = $this->session->userdata('idadmin');
+
 		// $hsl = $this->db->query("SELECT b.id_barang, b.nama_barang, b.satuan_barang, b.harga_pokok, b.harga_jual, b.stok, b.tanggal_input, b.tanggal_update, k.id_kategori, k.nama_kategori FROM barang b, kategori k WHERE b.id_kategori=k.id_kategori");
-		$hsl = $this->db->query("SELECT bk.id_buku_kas, bk.id_user, bk.nama, bk.tanggal, bk.pemasukan, bk.pengeluaran, bk.saldo, bk.keterangan FROM buku_kas bk WHERE 1");
+		// $hsl = $this->db->query("SELECT bk.id_bk, bk.id_user, bk.tanggal, ms.nominal, IF (id_pengeluaran=0 , 0, kl.nominal) , bk.saldo FROM buku_kas bk, pengeluaran kl, pemasukan ms WHERE bk.id_user='$idadmin' AND (bk.id_pengeluaran=kl.id_pengeluaran OR bk.id_pemasukan=ms.id_pemasukan)");
+		$hsl = $this->db->query("SELECT DISTINCT bk.id_buku_kas, bk.id_user, bk.tanggal, IF (bk.id_pemasukan=0 , 0, ms.nominal) AS pemasukan, IF (bk.id_pemasukan=0 , '', ms.ket_pemasukan) AS ket_pemasukan, IF (bk.id_pengeluaran=0 , 0, kl.nominal) AS pengeluaran, IF (bk.id_pengeluaran=0 , '', kl.ket_pengeluaran) AS ket_pengeluaran, bk.saldo FROM buku_kas bk, pengeluaran kl, pemasukan ms WHERE bk.id_user='$idadmin' AND (bk.id_pengeluaran=kl.id_pengeluaran OR bk.id_pemasukan=ms.id_pemasukan)");
 		return $hsl;
 	}
 
+	function get_saldo_by_user($idadmin)
+	{
+		$hasil = $this->db->query("SELECT saldo FROM buku_kas WHERE id_user=$idadmin ORDER BY id_buku_kas DESC");
+		return $hasil;
+	}
 	// function simpan_barang($kobar, $nabar, $kat, $satuan, $harpok, $harjul, $harjul_grosir, $stok, $min_stok)
 	// {
 	// 	$user_id = $this->session->userdata('idadmin');

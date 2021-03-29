@@ -13,14 +13,18 @@ class BukuKas extends CI_Controller
         $this->load->model('m_pengeluaran');
         $this->load->model('m_barang');
         $this->load->model('m_kategori');
+        $this->load->model('m_pengguna');
         // $this->load->library('barcode');
     }
     function index()
     {
-        if ($this->session->userdata('akses') == '1') {
-            $data['data'] = $this->m_barang->tampil_barang();
-            $data['kat'] = $this->m_kategori->tampil_kategori();
-            $data['kat2'] = $this->m_kategori->tampil_kategori();
+        if ($this->session->userdata('masuk') == true) {
+            $id_user = $this->session->userdata('idadmin');
+
+            $data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
+            $data['data'] = $this->m_buku_kas->tampil_buku_kas();
+            // $data['kat'] = $this->m_kategori->tampil_kategori();
+            // $data['kat2'] = $this->m_kategori->tampil_kategori();
             $data['judul'] = "Buku Kas";
             $this->load->view('admin/v_buku_kas', $data);
         } else {

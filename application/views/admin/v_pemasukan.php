@@ -75,7 +75,7 @@ $this->load->view('layout/header');
             <tr>
                 <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
                 <th style="width:140px; text-align:right; padding-right:10px;">Total (Rp) </th>
-                <th style="text-align:right;width:140px;"><input type="text" name="total" value="<?php echo number_format($this->cart->total_pemasukan()); ?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
+                <th style="text-align:right;width:140px;"><input type="text" name="total" value="<?php echo number_format($this->cart->total_pemasukan()); ?>" class="form-control input-sm total" style="text-align:right;margin-bottom:5px;" readonly></th>
             </tr>
             <!-- <tr>
                     <th>Tunai(Rp)</th>
@@ -190,7 +190,7 @@ $this->load->view('layout/script');
 </script>
 <script type="text/javascript">
     $(function() {
-        $('.jml_uang').priceFormat({
+        $('.total').priceFormat({
             prefix: '',
             //centsSeparator: '',
             centsLimit: 0,

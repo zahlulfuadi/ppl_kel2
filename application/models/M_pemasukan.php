@@ -20,11 +20,15 @@ class M_pemasukan extends CI_Model
 		return $hsl;
 	}
 
-	function simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan)
+	function simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan, $saldo)
 	{
+		$total = (int)str_replace(',', '', $total);
+		// echo $total;
 		$idadmin = $this->session->userdata('idadmin');
+		// $total = "";
 		$this->db->query("INSERT INTO pemasukan (id_pemasukan, tanggal_pemasukan, nominal, ket_pemasukan, id_user) VALUES ('$id_pemasukan','$tgl','$total','$ket_pemasukan','$idadmin')");
 		$id_pemasukan = $this->db->insert_id();
+
 		foreach ($this->cart->contents() as $item) {
 			$data = array(
 				'id_detail_pemasukan' 	=>	"",
@@ -38,6 +42,8 @@ class M_pemasukan extends CI_Model
 			$this->db->insert('detail_pemasukan', $data);
 			$this->db->query("update barang set stok=stok-'$item[qty]' where id_barang='$item[id]'");
 		}
+		$saldo += $total;
+		$this->db->query("INSERT INTO buku_kas (id_buku_kas, id_user, tanggal, id_pemasukan, id_pengeluaran, saldo) VALUES ('','$idadmin','$tgl','$id_pemasukan','',$saldo)");
 		return true;
 	}
 	function get_nofak()
