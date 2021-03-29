@@ -13,6 +13,9 @@ class Pengguna extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('akses') == '1') {
+			$id_user = $this->session->userdata('idadmin');
+
+			$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
 			$data['data'] = $this->m_pengguna->get_pengguna();
 			$data['judul'] = "Pengguna";
 			$this->load->view('admin/v_pengguna', $data);
@@ -70,7 +73,17 @@ class Pengguna extends CI_Controller
 	{
 		if ($this->session->userdata('akses') == '1') {
 			$kode = $this->input->post('kode');
-			$this->m_pengguna->update_status($kode);
+			$this->m_pengguna->nonaktifkan($kode);
+			redirect('admin/pengguna');
+		} else {
+			echo "Halaman tidak ditemukan";
+		}
+	}
+	function aktifkan()
+	{
+		if ($this->session->userdata('akses') == '1') {
+			$kode = $this->input->post('kode');
+			$this->m_pengguna->aktifkan($kode);
 			redirect('admin/pengguna');
 		} else {
 			echo "Halaman tidak ditemukan";

@@ -49,7 +49,11 @@ $this->load->view('layout/header');
                         <td><?php echo $status; ?></td>
                         <td style="text-align:center;">
                             <a class="btn btn-xs btn-warning" href="#modalEditPelanggan<?php echo $id ?>" data-toggle="modal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
-                            <a class="btn btn-xs btn-danger" href="#modalHapusPelanggan<?php echo $id ?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Nonaktifkan</a>
+                            <?php if ($status == 1) { ?>
+                                <a class="btn btn-xs btn-danger" href="#modalHapusPelanggan<?php echo $id ?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Nonaktifkan</a>
+                            <?php } else { ?>
+                                <a class="btn btn-xs btn-success" href="#modalAktifkanPelanggan<?php echo $id ?>" data-toggle="modal" title="Ubah"><span class="fa fa-close"></span> Aktifkan</a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -70,7 +74,7 @@ $this->load->view('layout/header');
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Nama</label>
+                        <label class="control-label col-xs-3">Nama UKM/Himada</label>
                         <div class="col-xs-9">
                             <input name="nama" class="form-control" type="text" placeholder="Input Nama..." style="width:280px;" required>
                         </div>
@@ -102,7 +106,7 @@ $this->load->view('layout/header');
                         <div class="col-xs-9">
                             <select name="level" class="form-control" style="width:280px;" required>
                                 <option value="1">Admin</option>
-                                <option value="2">Kasir</option>
+                                <option value="2">UKM/Himada</option>
                             </select>
                         </div>
                     </div>
@@ -173,10 +177,10 @@ foreach ($data->result_array() as $a) {
                                 <select name="level" class="form-control" style="width:280px;" required>
                                     <?php if ($level == '1') : ?>
                                         <option value="1" selected>Admin</option>
-                                        <option value="2">Kasir</option>
+                                        <option value="2">UKM/Himada</option>
                                     <?php else : ?>
                                         <option value="1">Admin</option>
-                                        <option value="2" selected>Kasir</option>
+                                        <option value="2" selected>UKM/Himada</option>
                                     <?php endif; ?>
                                 </select>
                             </div>
@@ -220,6 +224,43 @@ foreach ($data->result_array() as $a) {
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                         <button type="submit" class="btn btn-primary">Nonaktifkan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php
+}
+?>
+
+<!--END MODAL-->
+
+
+<!-- ============ MODAL AKTIFKAN =============== -->
+<?php
+foreach ($data->result_array() as $a) {
+    $id = $a['id_user'];
+    $nm = $a['nama'];
+    $username = $a['username'];
+    $password = $a['password'];
+    $level = $a['user_level'];
+    $status = $a['user_status'];
+?>
+    <div id="modalAktifkanPelanggan<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 class="modal-title" id="myModalLabel">Aktifkan Pengguna</h3>
+                </div>
+                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/pengguna/aktifkan' ?>">
+                    <div class="modal-body">
+                        <p>Yakin mau mengaktifkan pengguna <b><?php echo $nm; ?></b>..?</p>
+                        <input name="kode" type="hidden" value="<?php echo $id; ?>">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Aktifkan</button>
                     </div>
                 </form>
             </div>
