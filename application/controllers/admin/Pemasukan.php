@@ -31,15 +31,16 @@ class Pemasukan extends CI_Controller
 	{
 		if ($this->session->userdata('masuk') == true) {
 			$kobar = $this->input->post('kode_brg');
-			$x['brg'] = $this->m_barang->get_barang($kobar);
-			$this->load->view('admin/v_detail_barang_jual', $x);
+			$data['brg'] = $this->m_barang->get_barang($kobar);
+			$this->load->view('admin/v_detail_barang_jual', $data);
 		} else {
 			echo "Halaman tidak ditemukan";
 		}
 	}
 	function add_to_cart()
 	{
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('masuk') == true) {
+			$id_user = $this->session->userdata('idadmin');
 			$kobar = $this->input->post('kode_brg');
 			$produk = $this->m_barang->get_barang($kobar);
 			$i = $produk->row_array();
@@ -52,7 +53,8 @@ class Pemasukan extends CI_Controller
 				'price'    => str_replace(",", "", $this->input->post('harjul')) - $this->input->post('diskon'),
 				'disc'     => $this->input->post('diskon'),
 				'qty'      => $this->input->post('qty'),
-				'amount'	  => str_replace(",", "", $this->input->post('harjul'))
+				'amount'	  => str_replace(",", "", $this->input->post('harjul')),
+				'id_user' 		=> $id_user
 			);
 			if (!empty($this->cart->total_items())) {
 				foreach ($this->cart->contents() as $items) {
@@ -82,7 +84,7 @@ class Pemasukan extends CI_Controller
 	}
 	function remove()
 	{
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('masuk') == true) {
 			$row_id = $this->uri->segment(4);
 			$this->cart->update(array(
 				'rowid'      => $row_id,
@@ -95,40 +97,51 @@ class Pemasukan extends CI_Controller
 	}
 	function simpan_pemasukan()
 	{
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('masuk') == true) {
+			$tgl = $this->input->post('tgl');
 			$total = $this->input->post('total');
-			$jml_uang = str_replace(",", "", $this->input->post('jml_uang'));
-			$kembalian = $jml_uang - $total;
-			if (!empty($total) && !empty($jml_uang)) {
-				if ($jml_uang < $total) {
-					echo $this->session->set_flashdata(
-						'msg',
-						'<div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
-						Jumlah uang yang Anda Masukkan Kurang!
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>'
-					);
+			// $jml_uang = str_replace(",", "", $this->input->post('jml_uang'));
+			// $kembalian = $jml_uang - $total;
+			if (!empty($total)) {
+				// if ($jml_uang < $total) {
+				// 	echo $this->session->set_flashdata(
+				// 		'msg',
+				// 		'<div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
+				// 		Jumlah uang yang Anda Masukkan Kurang!
+				// 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				// 			<span aria-hidden="true">&times;</span>
+				// 		</button>
+				// 	</div>'
+				// 	);
+				// 	redirect('admin/pemasukan');
+				// } else {
+				// $id_pemasukan = $this->m_pemasukan->get_id_pemasukan();
+				$id_pemasukan = "";
+				$ket_pemasukan = "keterangan";
+				// $this->session->set_userdata('id_pemasukan', $id_pemasukan);
+				$this->session->set_userdata('tgl', $tgl);
+				$order_proses = $this->m_pemasukan->simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan);
+				if ($order_proses) {
+					$this->cart->destroy();
+
+					$this->session->unset_userdata('tgl');
+					$this->session->unset_userdata('supplier');
+					echo $this->session->set_flashdata('msg', '
+					<div class="alert alert-success alert-dismissible fade show text-white" role="alert">
+							Pemasukan Berhasil di Simpan di Database!
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						');
 					redirect('admin/pemasukan');
 				} else {
-					$nofak = $this->m_pemasukan->get_nofak();
-					$this->session->set_userdata('nofak', $nofak);
-					$order_proses = $this->m_pemasukan->simpan_pemasukan($nofak, $total, $jml_uang, $kembalian);
-					if ($order_proses) {
-						$this->cart->destroy();
-
-						$this->session->unset_userdata('tglfak');
-						$this->session->unset_userdata('supplier');
-						$this->load->view('admin/alert/alert_sukses');
-					} else {
-						redirect('admin/pemasukan');
-					}
+					redirect('admin/pemasukan');
 				}
 			} else {
 				echo $this->session->set_flashdata('msg', '
 				<div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
-						pemasukan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
+						Pemasukan Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -141,6 +154,7 @@ class Pemasukan extends CI_Controller
 		}
 	}
 
+	// ga dipake
 	function cetak_faktur()
 	{
 		$x['data'] = $this->m_pemasukan->cetak_faktur();

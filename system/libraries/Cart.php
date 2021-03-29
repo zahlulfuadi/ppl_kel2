@@ -65,6 +65,7 @@ class CI_Cart
 			// No cart exists so we'll set some base values
 			$this->_cart_contents['cart_total'] = 0;
 			$this->_cart_contents['cart_total_pengeluaran'] = 0;
+			$this->_cart_contents['cart_total_pemasukan'] = 0;
 			$this->_cart_contents['total_items'] = 0;
 		}
 
@@ -366,6 +367,7 @@ class CI_Cart
 		$this->_cart_contents['total_items'] = $items;
 		$this->_cart_contents['cart_total'] = $total;
 		$this->_cart_contents['cart_total_pengeluaran'] = $total_pengeluaran;
+		$this->_cart_contents['cart_total_pemasukan'] = $total_pemasukan;
 
 		// Is our cart empty?  If so we delete it from the session
 		if (count($this->_cart_contents) <= 2) {
@@ -401,6 +403,11 @@ class CI_Cart
 		return $this->_cart_contents['cart_total_pengeluaran'];
 	}
 
+	function total_pemasukan()
+	{
+		return $this->_cart_contents['cart_total_pemasukan'];
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -434,6 +441,7 @@ class CI_Cart
 		unset($cart['total_items']);
 		unset($cart['cart_total']);
 		unset($cart['cart_total_pengeluaran']);
+		unset($cart['cart_total_pemasukan']);
 
 		return $cart;
 	}
@@ -515,6 +523,7 @@ class CI_Cart
 
 		$this->_cart_contents['cart_total'] = 0;
 		$this->_cart_contents['cart_total_pengeluaran'] = 0;
+		$this->_cart_contents['cart_total_pemasukan'] = 0;
 		$this->_cart_contents['total_items'] = 0;
 
 		$this->CI->session->unset_userdata('cart_contents');

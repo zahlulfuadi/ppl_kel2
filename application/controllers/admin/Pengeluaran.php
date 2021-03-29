@@ -84,7 +84,7 @@ class Pengeluaran extends CI_Controller
 	function simpan_pengeluaran()
 	{
 		if ($this->session->userdata('masuk') == true) {
-			$id_pengeluaran = $this->session->userdata('id_pengeluaran');
+			// $id_pengeluaran = $this->session->userdata('id_pengeluaran');
 			$id_pengeluaran = "";
 			$tgl = $this->session->userdata('tgl');
 			$id_supplier = $this->session->userdata('supplier');
@@ -114,7 +114,7 @@ class Pengeluaran extends CI_Controller
 				echo $this->session->set_flashdata(
 					'msg',
 					'<div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
-						pengeluaran Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
+						Pengeluaran Gagal di Simpan, Mohon Periksa Kembali Semua Inputan Anda!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>

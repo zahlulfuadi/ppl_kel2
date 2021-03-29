@@ -20,24 +20,23 @@ class M_pemasukan extends CI_Model
 		return $hsl;
 	}
 
-	function simpan_pemasukan($nofak, $total, $jml_uang, $kembalian)
+	function simpan_pemasukan($id_pemasukan, $tgl, $total, $ket_pemasukan)
 	{
 		$idadmin = $this->session->userdata('idadmin');
-		$this->db->query("INSERT INTO pemasukan (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran')");
+		$this->db->query("INSERT INTO pemasukan (id_pemasukan, tanggal_pemasukan, nominal, ket_pemasukan, id_user) VALUES ('$id_pemasukan','$tgl','$total','$ket_pemasukan','$idadmin')");
+		$id_pemasukan = $this->db->insert_id();
 		foreach ($this->cart->contents() as $item) {
 			$data = array(
-				'd_jual_nofak' 			=>	$nofak,
-				'd_jual_barang_id'		=>	$item['id'],
-				'd_jual_barang_nama'	=>	$item['name'],
-				'd_jual_barang_satuan'	=>	$item['satuan'],
-				'd_jual_barang_harpok'	=>	$item['harpok'],
-				'd_jual_barang_harjul'	=>	$item['amount'],
-				'd_jual_qty'			=>	$item['qty'],
-				'd_jual_diskon'			=>	$item['disc'],
-				'd_jual_total'			=>	$item['subtotal']
+				'id_detail_pemasukan' 	=>	"",
+				'id_barang'				=>	$item['id'],
+				'harga_jual'			=>	$item['amount'],
+				'jml_barang'			=>	$item['qty'],
+				'diskon'				=>	$item['disc'],
+				'total_pemasukan'		=>	$item['subtotal'],
+				'id_pemasukan'			=>	$id_pemasukan
 			);
-			$this->db->insert('tbl_detail_jual', $data);
-			$this->db->query("update tbl_barang set barang_stok=barang_stok-'$item[qty]' where barang_id='$item[id]'");
+			$this->db->insert('detail_pemasukan', $data);
+			$this->db->query("update barang set stok=stok-'$item[qty]' where id_barang='$item[id]'");
 		}
 		return true;
 	}

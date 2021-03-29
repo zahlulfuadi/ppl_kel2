@@ -49,7 +49,7 @@ $this->load->view('layout/header');
                 </tr>
                 <tr>
                     <th><input type="text" name="kode_brg" id="kode_brg" class="form-control input-sm"></th>
-                </tr style="margin-left: -10px;">
+                </tr>
                 <div id="detail_barang" style="position:absolute; margin:65px 0px 65px 0px;"></div>
             </table>
         </form>
