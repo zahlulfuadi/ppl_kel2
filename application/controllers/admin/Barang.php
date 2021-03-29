@@ -10,11 +10,16 @@ class Barang extends CI_Controller
 		};
 		$this->load->model('m_kategori');
 		$this->load->model('m_barang');
+		$this->load->model('m_pengguna');
+		$this->load->helper('date');
 		// $this->load->library('barcode');
 	}
 	function index()
 	{
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('masuk') == true) {
+			$id_user = $this->session->userdata('idadmin');
+
+			$data['profil'] = $this->m_pengguna->get_pengguna_by_id($id_user)->result_array()[0];
 			$data['data'] = $this->m_barang->tampil_barang();
 			$data['kat'] = $this->m_kategori->tampil_kategori();
 			$data['kat2'] = $this->m_kategori->tampil_kategori();
@@ -26,17 +31,20 @@ class Barang extends CI_Controller
 	}
 	function tambah_barang()
 	{
-		if ($this->session->userdata('akses') == '1') {
-			$kobar = $this->m_barang->get_kobar();
+		if ($this->session->userdata('masuk') == true) {
+			$id_barang = "";
 			$nabar = $this->input->post('nabar');
 			$kat = $this->input->post('kategori');
 			$satuan = $this->input->post('satuan');
 			$harpok = str_replace(',', '', $this->input->post('harpok'));
 			$harjul = str_replace(',', '', $this->input->post('harjul'));
-			$harjul_grosir = str_replace(',', '', $this->input->post('harjul_grosir'));
+			// $harjul_grosir = str_replace(',', '', $this->input->post('harjul_grosir'));
 			$stok = $this->input->post('stok');
-			$min_stok = $this->input->post('min_stok');
-			$this->m_barang->simpan_barang($kobar, $nabar, $kat, $satuan, $harpok, $harjul, $harjul_grosir, $stok, $min_stok);
+
+			date_default_timezone_set('Asia/Jakarta');
+			$tgl_input = date('d-m-Y H:i:s');
+			// $min_stok = $this->input->post('min_stok');
+			$this->m_barang->simpan_barang($id_barang, $nabar, $kat, $satuan, $harpok, $harjul, $stok, $tgl_input);
 
 			redirect('admin/barang');
 		} else {
@@ -45,17 +53,18 @@ class Barang extends CI_Controller
 	}
 	function edit_barang()
 	{
-		if ($this->session->userdata('akses') == '1') {
-			$kobar = $this->input->post('kobar');
+		if ($this->session->userdata('masuk') == true) {
+			$id_barang = $this->input->post('id_barang');
 			$nabar = $this->input->post('nabar');
 			$kat = $this->input->post('kategori');
 			$satuan = $this->input->post('satuan');
 			$harpok = str_replace(',', '', $this->input->post('harpok'));
 			$harjul = str_replace(',', '', $this->input->post('harjul'));
-			$harjul_grosir = str_replace(',', '', $this->input->post('harjul_grosir'));
 			$stok = $this->input->post('stok');
-			$min_stok = $this->input->post('min_stok');
-			$this->m_barang->update_barang($kobar, $nabar, $kat, $satuan, $harpok, $harjul, $harjul_grosir, $stok, $min_stok);
+
+			date_default_timezone_set('Asia/Jakarta');
+			$tgl_update = date('d-m-Y H:i:s');
+			$this->m_barang->update_barang($id_barang, $nabar, $kat, $satuan, $harpok, $harjul, $stok, $tgl_update);
 			redirect('admin/barang');
 		} else {
 			echo "Halaman tidak ditemukan";
@@ -63,9 +72,9 @@ class Barang extends CI_Controller
 	}
 	function hapus_barang()
 	{
-		if ($this->session->userdata('akses') == '1') {
-			$kode = $this->input->post('kode');
-			$this->m_barang->hapus_barang($kode);
+		if ($this->session->userdata('masuk') == true) {
+			$id_barang = $this->input->post('id_barang');
+			$this->m_barang->hapus_barang($id_barang);
 			redirect('admin/barang');
 		} else {
 			echo "Halaman tidak ditemukan";

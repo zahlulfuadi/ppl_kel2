@@ -22,10 +22,8 @@ $this->load->view('layout/header');
                     <th>Nama Barang</th>
                     <th>Satuan</th>
                     <th>Harga Pokok</th>
-                    <th>Harga (Eceran)</th>
-                    <th>Harga (Grosir)</th>
+                    <th>Harga Jual</th>
                     <th>Stok</th>
-                    <th>Min Stok</th>
                     <th>Kategori</th>
                     <th style="width:100px;text-align:center;">Aksi</th>
                 </tr>
@@ -40,9 +38,7 @@ $this->load->view('layout/header');
                     $satuan = $a['satuan_barang'];
                     $harpok = $a['harga_pokok'];
                     $harjul = $a['harga_jual'];
-                    // $harjul_grosir = $a['harga_jual_grosir'];
                     $stok = $a['stok'];
-                    // $min_stok = $a['barang_min_stok'];
                     $kat_id = $a['id_kategori'];
                     $kat_nama = $a['nama_kategori'];
                 ?>
@@ -53,11 +49,7 @@ $this->load->view('layout/header');
                         <td style="text-align:center;"><?php echo $satuan; ?></td>
                         <td style="text-align:right;"><?php echo 'Rp ' . number_format($harpok); ?></td>
                         <td style="text-align:right;"><?php echo 'Rp ' . number_format($harjul); ?></td>
-                        <td style="text-align:right;">kosong<?php // echo 'Rp ' . number_format($harjul_grosir); 
-                                                            ?></td>
                         <td style="text-align:center;"><?php echo $stok; ?></td>
-                        <td style="text-align:center;">kosong<?php // echo $min_stok; 
-                                                                ?></td>
                         <td><?php echo $kat_nama; ?></td>
                         <td style="text-align:center;">
                             <a class="btn btn-xs btn-warning" href="#modalEditPelanggan<?php echo $id ?>" data-toggle="modal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
@@ -99,8 +91,10 @@ $this->load->view('layout/header');
                         <label class="control-label col-xs-3">Kategori</label>
                         <div class="col-xs-9">
                             <select name="kategori" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Kategori" data-width="80%" placeholder="Pilih Kategori" required>
+                                <option value=''>Pilih Supplier</option>
+
                                 <?php foreach ($kat2->result_array() as $k2) {
-                                    $id_kat = $k2['kategori_id'];
+                                    $id_kat = $k2['id_kategori'];
                                     $nm_kat = $k2['nama_kategori'];
                                 ?>
                                     <option value="<?php echo $id_kat; ?>"><?php echo $nm_kat; ?></option>
@@ -205,7 +199,7 @@ foreach ($data->result_array() as $a) {
                         <div class="form-group">
                             <label class="control-label col-xs-3">Kode Barang</label>
                             <div class="col-xs-9">
-                                <input name="kobar" class="form-control" type="text" value="<?php echo $id; ?>" placeholder="Kode Barang..." style="width:335px;" readonly>
+                                <input name="id_barang" class="form-control" type="text" value="<?php echo $id; ?>" placeholder="Kode Barang..." style="width:335px;" readonly>
                             </div>
                         </div>
 
@@ -986,7 +980,6 @@ foreach ($data->result_array() as $a) {
     $harpok = $a['harga_pokok'];
     $harjul = $a['harga_jual'];
     $stok = $a['stok'];
-    // $min_stok = $a['barang_min_stok'];
     $kat_id = $a['id_kategori'];
     $kat_nama = $a['nama_kategori'];
 ?>
@@ -1000,7 +993,7 @@ foreach ($data->result_array() as $a) {
                 <form class="form-horizontal" method="post" action="<?php echo base_url() . 'admin/barang/hapus_barang' ?>">
                     <div class="modal-body">
                         <p>Yakin mau menghapus data barang ini..?</p>
-                        <input name="kode" type="hidden" value="<?php echo $id; ?>">
+                        <input name="id_barang" type="hidden" value="<?php echo $id; ?>">
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>

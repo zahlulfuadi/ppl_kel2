@@ -70,14 +70,10 @@ $this->load->view('layout/header');
                     <div class="form-group">
                         <label class="control-label col-xs-3">Deskripsi</label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
+                            <textarea name="deskripsi" class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
                         </div>
                     </div>
-
-
-
                 </div>
-
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                     <button class="btn btn-info">Simpan</button>
@@ -115,7 +111,7 @@ foreach ($data->result_array() as $a) {
                         <div class="form-group">
                             <label class="control-label col-xs-3">Deskripsi</label>
                             <div class="col-xs-9">
-                                <textarea class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
+                                <textarea name="deskripsi" class="form-control" rows="3" style="width:280px;" type="text" placeholder="Masukkan Deskripsi..."></textarea>
                             </div>
                         </div>
 

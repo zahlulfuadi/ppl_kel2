@@ -8,9 +8,9 @@ class M_kategori extends CI_Model
 		return $hsl;
 	}
 
-	function update_kategori($kode, $kat)
+	function update_kategori($kode, $kat, $desk)
 	{
-		$hsl = $this->db->query("UPDATE kategori set kategori_nama='$kat' where id_kategori='$kode'");
+		$hsl = $this->db->query("UPDATE kategori set nama_kategori='$kat', deskripsi='$desk' where id_kategori='$kode'");
 		return $hsl;
 	}
 
@@ -20,9 +20,9 @@ class M_kategori extends CI_Model
 		return $hsl;
 	}
 
-	function simpan_kategori($kat)
+	function simpan_kategori($kat, $desk)
 	{
-		$hsl = $this->db->query("INSERT INTO kategori(kategori_nama) VALUES ('$kat')");
+		$hsl = $this->db->query("INSERT INTO kategori(nama_kategori, deskripsi) VALUES ('$kat', '$desk')");
 		return $hsl;
 	}
 }
