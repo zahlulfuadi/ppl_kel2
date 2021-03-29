@@ -15,13 +15,12 @@ class Pengeluaran extends CI_Controller
 	}
 	function index()
 	{
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('masuk') == true) {
 			$x['sup'] = $this->m_supplier->tampil_supplier();
 			$x['judul'] = "Pengeluaran";
 			$this->load->view('admin/v_pengeluaran', $x);
 		} else {
 			echo "Halaman tidak ditemukan";
-			echo $this->session->userdata('akses');
 		}
 	}
 	function get_barang()

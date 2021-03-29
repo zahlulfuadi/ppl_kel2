@@ -6,6 +6,11 @@ class M_pengguna extends CI_Model
 		$hsl = $this->db->query("SELECT * FROM user");
 		return $hsl;
 	}
+	function get_pengguna_by_id($id)
+	{
+		$hsl = $this->db->query("SELECT * FROM user WHERE id_user='$id'");
+		return $hsl;
+	}
 	function simpan_pengguna($nama, $username, $password, $level)
 	{
 		$hsl = $this->db->query("INSERT INTO user(nama_user,username,password,user_level,user_status) VALUES ('$nama','$username',md5('$password'),'$level','1')");

@@ -12,7 +12,7 @@ class Welcome extends CI_Controller
 
 	function index()
 	{
-		$data['judul'] = "Dashboard";
+		$data['judul'] = "Laman Utama";
 		$this->load->view('admin/v_index2', $data);
 	}
 }
