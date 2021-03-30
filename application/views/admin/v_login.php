@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="login-bg" style="background-image: url('assets/img/login-bg.jpeg'); background-size: 100%;">
+<body class="login-bg" style="background-image: url('assets/img/bg_login.png'); background-size: 100%;">
 
 
 	<div class="page-content container">
